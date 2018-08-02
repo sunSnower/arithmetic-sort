@@ -7,6 +7,7 @@ package com.arithmetic.sort;
  * 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置
  * 重复步骤3直到某一指针到达序列尾
  * 将另一序列剩下的所有元素直接复制到合并序列尾
+ * 
  * 迭代法（Bottom-up）
  * 原理如下（假设序列共有 {\displaystyle n} n个元素）：
  *
@@ -23,22 +24,27 @@ public class MergeSort {
      * @param end
      */
     static void merge_sort_recursive(int[] arr, int[] result, int start, int end) {
-        if (start >= end)
+        if (start >= end){
             return;
+        }
         int len = end - start, mid = (len >> 1) + start;
         int start1 = start, end1 = mid;
         int start2 = mid + 1, end2 = end;
         merge_sort_recursive(arr, result, start1, end1);
         merge_sort_recursive(arr, result, start2, end2);
         int k = start;
-        while (start1 <= end1 && start2 <= end2)
+        while (start1 <= end1 && start2 <= end2){
             result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
-        while (start1 <= end1)
+        }
+        while (start1 <= end1){
             result[k++] = arr[start1++];
-        while (start2 <= end2)
+        }
+        while (start2 <= end2){
             result[k++] = arr[start2++];
-        for (k = start; k <= end; k++)
+        }
+        for (k = start; k <= end; k++){
             arr[k] = result[k];
+        }
     }
     public static void merge_sort_guibing(int[] arr) {
         int len = arr.length;
