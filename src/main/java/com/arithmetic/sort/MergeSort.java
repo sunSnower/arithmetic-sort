@@ -1,89 +1,40 @@
 package com.arithmetic.sort;
+public class MergeSort{
+    int[] arr;
+    MergeSort(int[] arr){
+        this.arr = arr;
+    }
 
-/**
- * 递归法（Top-down）
- * 申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列
- * 设定两个指针，最初位置分别为两个已经排序序列的起始位置
- * 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置
- * 重复步骤3直到某一指针到达序列尾
- * 将另一序列剩下的所有元素直接复制到合并序列尾
- * 
- * 迭代法（Bottom-up）
- * 原理如下（假设序列共有 {\displaystyle n} n个元素）：
- *
- * 将序列每相邻两个数字进行归并操作，形成 {\displaystyle ceil(n/2)} {\displaystyle ceil(n/2)}个序列，排序后每个序列包含两/一个元素
- * 若此时序列数不是1个则将上述序列再次归并，形成 {\displaystyle ceil(n/4)} {\displaystyle ceil(n/4)}个序列，每个序列包含四/三个元素
- * 重复步骤2，直到所有元素排序完毕，即序列数为1
- */
-public class MergeSort {
+    public void mergeSort(){
+        for(int space = 2; space <= arr.length/2; space *= 2){
+            for(int i = 0; i < arr.length-1; i += space){
+                int[] tempArr = new int[space];
+
+            }
+        }
+    }
+
+    public void swap(int li, int ri){
+        int tempValue = arr[li];
+        arr[li] = arr[ri];
+        arr[ri] = tempValue;
+    }
+
     /**
-     * 归并版
-     * @param arr
-     * @param result
-     * @param start
+     * 将相邻的两段排序并合并
+     * @param begin
      * @param end
      */
-    static void merge_sort_recursive(int[] arr, int[] result, int start, int end) {
-        if (start >= end){
-            return;
-        }
-        int len = end - start, mid = (len >> 1) + start;
-        int start1 = start, end1 = mid;
-        int start2 = mid + 1, end2 = end;
-        merge_sort_recursive(arr, result, start1, end1);
-        merge_sort_recursive(arr, result, start2, end2);
-        int k = start;
-        while (start1 <= end1 && start2 <= end2){
-            result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
-        }
-        while (start1 <= end1){
-            result[k++] = arr[start1++];
-        }
-        while (start2 <= end2){
-            result[k++] = arr[start2++];
-        }
-        for (k = start; k <= end; k++){
-            arr[k] = result[k];
-        }
-    }
-    public static void merge_sort_guibing(int[] arr) {
-        int len = arr.length;
-        int[] result = new int[len];
-        merge_sort_recursive(arr, result, 0, len - 1);
-    }
-
-    /**
-     * 迭代版
-     */
-    public static void merge_sort_diedai(int[] arr) {
-        int len = arr.length;
-        int[] result = new int[len];
-        int block, start;
-
-        // 原版代码的迭代次数少了一次，没有考虑到奇数列数组的情况
-        for(block = 1; block < len; block *= 2) {
-            for(start = 0; start <len; start += 2 * block) {
-                int low = start;
-                int mid = (start + block) < len ? (start + block) : len;
-                int high = (start + 2 * block) < len ? (start + 2 * block) : len;
-                //两个块的起始下标及结束下标
-                int start1 = low, end1 = mid;
-                int start2 = mid, end2 = high;
-                //开始对两个block进行归并排序
-                while (start1 < end1 && start2 < end2) {
-                    result[low++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
-                }
-                while(start1 < end1) {
-                    result[low++] = arr[start1++];
-                }
-                while(start2 < end2) {
-                    result[low++] = arr[start2++];
-                }
+    public void merge(int begin, int end){
+        int[] tempArr = new int[begin-end];
+        int middle = (end-begin)/2;
+        int li = begin;
+        int ri = middle+1;
+        while(true){
+            if(li>=middle && ri>=end){
+                break;
             }
-            int[] temp = arr;
-            arr = result;
-            result = temp;
+
         }
-        result = arr;
     }
 }
