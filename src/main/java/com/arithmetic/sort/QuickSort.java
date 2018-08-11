@@ -1,6 +1,7 @@
 package com.arithmetic.sort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class QuickSort {
     public static void quickSort(int[] arr, int head, int tail){
@@ -33,10 +34,8 @@ public class QuickSort {
     }
 
     public static void main(String[] args){
-        int[] arr = {1, 3, 5, 7, 9, 2, 4, 6, 8, 0};
+        int[] arr = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
         quickSort(arr, 0, arr.length-1);
-        for(int value : arr){
-            System.out.println(value);
-        }
+        System.out.println(Arrays.toString(arr));
     }
 }
